@@ -88,7 +88,7 @@ resource "aws_mq_broker" "default" {
   apply_immediately          = "${var.apply_immediately}"
   publicly_accessible        = "${var.publicly_accessible}"
   security_groups            = ["${join("", aws_security_group.default.*.id)}"]
-  subnet_ids                 = ["${var.subnet_ids}"]
+  subnet_ids                 = var.subnet_ids
 
   logs {
     general = "${var.general_log}"
