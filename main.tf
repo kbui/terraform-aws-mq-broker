@@ -106,9 +106,8 @@ resource "aws_mq_broker" "default" {
     "password"       = "${local.mq_admin_password}"
     "groups"         = ["admin"]
     "console_access" = true
-  }]
-
-  user = [{
+  },
+  {
     "username" = "${local.mq_application_user}"
     "password" = "${local.mq_application_password}"
   }]
