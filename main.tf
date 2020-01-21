@@ -45,37 +45,37 @@ resource "random_string" "mq_application_password" {
 }
 
 resource "aws_ssm_parameter" "mq_master_username" {
-  name        = "${format(var.chamber_parameter_name, local.chamber_service, "mq_admin_username")}"
-  value       = "${local.mq_admin_user}"
+  name        = format(var.chamber_parameter_name, local.chamber_service, "mq_admin_username")
+  value       = local.mq_admin_user
   description = "MQ Username for the master user"
   type        = "String"
-  overwrite   = "${var.overwrite_ssm_parameter}"
+  overwrite   = var.overwrite_ssm_parameter
 }
 
 resource "aws_ssm_parameter" "mq_master_password" {
-  name        = "${format(var.chamber_parameter_name, local.chamber_service, "mq_admin_password")}"
-  value       = "${local.mq_admin_password}"
+  name        = format(var.chamber_parameter_name, local.chamber_service, "mq_admin_password")
+  value       = local.mq_admin_password
   description = "MQ Password for the master user"
   type        = "SecureString"
   key_id      = aws_kms_key.chamber_kms_key.id
-  overwrite   = "${var.overwrite_ssm_parameter}"
+  overwrite   = var.overwrite_ssm_parameter
 }
 
 resource "aws_ssm_parameter" "mq_application_username" {
-  name        = "${format(var.chamber_parameter_name, local.chamber_service, "mq_application_username")}"
-  value       = "${local.mq_application_user}"
+  name        = format(var.chamber_parameter_name, local.chamber_service, "mq_application_username")
+  value       = local.mq_application_user
   description = "AMQ username for the application user"
   type        = "String"
-  overwrite   = "${var.overwrite_ssm_parameter}"
+  overwrite   = var.overwrite_ssm_parameter
 }
 
 resource "aws_ssm_parameter" "mq_application_password" {
-  name        = "${format(var.chamber_parameter_name, local.chamber_service, "mq_application_password")}"
-  value       = "${local.mq_application_password}"
+  name        = format(var.chamber_parameter_name, local.chamber_service, "mq_application_password")
+  value       = local.mq_application_password
   description = "AMQ password for the application user"
   type        = "SecureString"
   key_id      = aws_kms_key.chamber_kms_key.id
-  overwrite   = "${var.overwrite_ssm_parameter}"
+  overwrite   = var.overwrite_ssm_parameter
 }
 
 resource "aws_mq_broker" "default" {
